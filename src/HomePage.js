@@ -20,7 +20,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 // import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
-
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 
 import {Link}from 'react-router-dom';
 //import Paper from '@material-ui/core/Paper';
@@ -41,6 +43,7 @@ import Divider from '@material-ui/core/Divider';
 import Transfer from "./Transfer";
 import Donation from "./Donation";
 import Transactions from "./Transactions"
+import Summary from "./Summary"
 // import Client from "./Client";
 // import Join  from "./component/layout/join" ;
 // import InboxIcon from '@material-ui/icons/Inbox';
@@ -92,6 +95,22 @@ const useStyles = makeStyles(theme => ({
     },
     color: 'red',
   },
+  gogreen:
+  {
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.75),
+    "&:hover": {
+      backgroundColor: fade(theme.palette.common.white, 0.55)
+    },
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(1),
+      width: "auto"
+    },
+    color:'#006400',
+  },
   searchIcon: {
     width: theme.spacing(7),
     height: "100%",
@@ -117,11 +136,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+
 export default function HomePage() {
   const classes = useStyles();
   const classes2 = useStyles2();
 
   var res = {};
+
+  const handlePageChange = () => {
+    window.location.href = "/home";
+  }
 
   return (
     <Router>
@@ -141,6 +165,34 @@ export default function HomePage() {
             <Typography className={classes.title} variant="h6" noWrap>
               Green Money
             </Typography>
+
+            <div className={classes.gogreen}>
+              <FormGroup row >
+                
+                <FormControlLabel 
+                  control={
+                    <Switch
+                      // checked={state.checkedB}
+                      // onChange={handleChange('checkedB')}
+                      value="checkedB"
+                      color="#FFFFFF"
+                    />
+                  }
+                  label="+ Green"
+                />
+                
+             </FormGroup>
+            </div>
+
+            <div className={classes.logout}>
+              {/* <Typography className={classes.title} variant="h6" noWrap>
+                {` ${ user } `}
+                <Authentication />
+              </Typography> */}
+              <Button onClick={handlePageChange}>
+                Home
+              </Button>
+            </div>
             <div className={classes.logout}>
               {/* <Typography className={classes.title} variant="h6" noWrap>
                 {` ${ user } `}
@@ -150,15 +202,7 @@ export default function HomePage() {
                 Log Out
               </Button>
             </div>
-            <div className={classes.logout}>
-              {/* <Typography className={classes.title} variant="h6" noWrap>
-                {` ${ user } `}
-                <Authentication />
-              </Typography> */}
-              <Button>
-                Home
-              </Button>
-            </div>
+           
           </Toolbar>
         </AppBar>
 
@@ -166,7 +210,7 @@ export default function HomePage() {
           <Grid container>
             <Grid item xs={2}>
               <List component="nav" aria-label="main mailbox folders">
-                <Link button to="/Summary">
+                <Link button to="/home">
                   <ListItem button>
                     <ListItemIcon>
                       <DashboardIcon />
@@ -244,6 +288,7 @@ export default function HomePage() {
 
             <Grid item xs={10} sm={10}>
               <Paper className={classes2.paper}>
+              <Route exact path="/home" component={Summary} />
                 <Route exact path="/Transfer" component={Transfer} />
                 <Route exact path="/Donation" component={Donation} />
                 <Route exact path="/Transactions" component={Transactions} />

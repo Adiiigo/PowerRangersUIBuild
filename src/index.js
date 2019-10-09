@@ -3,26 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import LogIn from './Login';
 import Homepage from './HomePage.js'
-//import Login from './Login';
+//import LogIn from './Login';
 import * as serviceWorker from './serviceWorker';
 import HomePage from "./HomePage";
 import Transfer from "./Transfer";
 import Donation from "./Donation";
+import Switch from '@material-ui/core/Switch';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-// function App() {
+const routing = (
+    <Router>
+        <div>
+            <Route exact path="/" component={LogIn}/>
+            <Route exact path="/home" component={HomePage}/>
 
-//     return (
-//         <div>
-//           <Route exact path="/login" component={Login} />
-//           <Route exact path="/home" component={HomePage} />
-//         </div>
-//     );
+        </div>
+    </Router>
+)
 
-// }
-
-
-ReactDOM.render(<HomePage/>, document.getElementById('root'));
+ReactDOM.render(routing, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
