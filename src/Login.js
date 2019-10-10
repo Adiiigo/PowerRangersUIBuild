@@ -15,6 +15,13 @@ import Container from "@material-ui/core/Container";
 import HomePage from "./HomePage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+const axios = require('axios');
+
+axios.get('https://gogreenbackend.azurewebsites.net/api/v1/userDetails').then(resp => {
+
+    console.log(resp.data);
+});
+
 const useStyles = makeStyles(theme => ({
   "@global": {
     body: {

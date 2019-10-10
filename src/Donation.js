@@ -15,6 +15,8 @@ import Container from "@material-ui/core/Container";
 import HomePage from "./HomePage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+const axios = require('axios');
+
 const useStyles = makeStyles(theme => ({
   "@global": {
     body: {
@@ -44,6 +46,24 @@ const useStyles = makeStyles(theme => ({
 export default function Donation() {
   const classes = useStyles();
 
+  const handleClick = () =>
+  {
+    async function makePostRequest() {
+
+      await axios.post('https://gogreenbackend.azurewebsites.net/api/v1/donate');
+  
+      // console.log(`Status code: ${res.status}`);
+      // console.log(`Status text: ${res.statusText}`);
+      // console.log(`Request method: ${res.request.method}`);
+      // console.log(`Path: ${res.request.path}`);
+  
+      // console.log(`Date: ${res.headers.date}`);
+      // console.log(`Data: ${res.data}`);
+      window.location.href("/") ;
+    }
+  
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -52,7 +72,7 @@ export default function Donation() {
         <Typography component="h1" variant="h5">
             Amount to Donate
         </Typography>
-        <form action="/home"  className={classes.form} noValidate>
+        <form className={classes.form} noValidate>
           
            <TextField
             variant="outlined"
@@ -60,24 +80,22 @@ export default function Donation() {
             required
             fullWidth
             name="amount"
-            label="Enter Amount"
-        
+            label="Enter Amount"        
             id="amount"
             autoComplete="amount"
-          />
-         
-
+          />         
+           <input type="hidden" value="12323" name="accountID"/>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}           
+            className={classes.submit}    
+            onclick={handleClick}       
           >
             Submit
           </Button>
-          </form>
-         
+          </form>     
           
       </div>
     </Container>
