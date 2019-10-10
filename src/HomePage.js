@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 // import Poll from "./component/layout/Poll";
 import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
 // import Authentication from "./Authentication";
 import Button from '@material-ui/core/Button'
 // import MyPollsBackend from "./component/backend/MyPollsBackend";
@@ -31,6 +32,7 @@ import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PollIcon from '@material-ui/icons/Poll';
 import PieChartIcon from '@material-ui/icons/PieChart';
+import BarChartIcon from '@material-ui/icons/BarChart';
 import AddToQueueIcon from '@material-ui/icons/AddToQueue';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 
@@ -48,6 +50,59 @@ import Summary from "./Summary"
 // import Join  from "./component/layout/join" ;
 // import InboxIcon from '@material-ui/icons/Inbox';
 // import DraftsIcon from '@material-ui/icons/Drafts';
+
+const IOSSwitch = withStyles(theme => ({
+  root: {
+    width: 42,
+    height: 26,
+    padding: 0,
+    margin: theme.spacing(1),
+  },
+  switchBase: {
+    padding: 1,
+    '&$checked': {
+      transform: 'translateX(16px)',
+      color: theme.palette.common.white,
+      '& + $track': {
+        backgroundColor: '#52d869',
+        opacity: 0.75,
+        border: 'none',
+      },
+    },
+    '&$focusVisible $thumb': {
+      color: '#52d869',
+      border: '6px solid #fff',
+    },
+  },
+  thumb: {
+    width: 24,
+    height: 24,
+  },
+  track: {
+    borderRadius: 26 / 2,
+    border: `1px solid ${theme.palette.grey[400]}`,
+    backgroundColor: theme.palette.grey[50],
+    opacity: 0.75,
+    transition: theme.transitions.create(['background-color', 'border']),
+  },
+  checked: {},
+  focusVisible: {},
+}))(({ classes, ...props }) => {
+  return (
+    <Switch
+      focusVisibleClassName={classes.focusVisible}
+      disableRipple
+      classes={{
+        root: classes.root,
+        switchBase: classes.switchBase,
+        thumb: classes.thumb,
+        track: classes.track,
+        checked: classes.checked,
+      }}
+      {...props}
+    />
+  );
+});
 
 const useStyles2 = makeStyles(theme => ({
   root: {
@@ -80,12 +135,15 @@ const useStyles = makeStyles(theme => ({
       display: "block"
     }
   },
+  subtitle:{
+    fontSize:15,
+  },
   logout: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: fade(theme.palette.common.white, 0.5),
     "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25)
+      backgroundColor: fade(theme.palette.common.white, 0.35)
     },
     marginLeft: 0,
     width: "100%",
@@ -99,9 +157,9 @@ const useStyles = makeStyles(theme => ({
   {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.75),
+    backgroundColor: fade(theme.palette.common.white, 0.5),
     "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.55)
+      backgroundColor: fade(theme.palette.common.white, 0.35)
     },
     marginLeft: 0,
     width: "100%",
@@ -143,6 +201,14 @@ export default function HomePage() {
 
   var res = {};
 
+  const [state, setState] = React.useState({
+    checkedB: false,
+  });
+
+  const handleChange = name => event => {
+    setState({ ...state, [name]: event.target.checked });
+  };
+
   const handlePageChange = () => {
     window.location.href = "/home";
   }
@@ -162,16 +228,21 @@ export default function HomePage() {
                 height="30"
               />
             </IconButton>
-            <Typography className={classes.title} variant="h6" noWrap>
-              Green Money
+
+            <Typography className={classes.title} variant="h6" >
+              Millennials 
+              <br></br>
+              <label className={classes.subtitle}>Bringing Difference</label>
             </Typography>
+
+   
 
             <div className={classes.gogreen}>
               <FormGroup row >
                 
                 <FormControlLabel 
                   control={
-                    <Switch
+                    <IOSSwitch
                       // checked={state.checkedB}
                       // onChange={handleChange('checkedB')}
                       value="checkedB"
@@ -210,12 +281,13 @@ export default function HomePage() {
           <Grid container>
             <Grid item xs={2}>
               <List component="nav" aria-label="main mailbox folders">
+
                 <Link button to="/home">
                   <ListItem button>
                     <ListItemIcon>
                       <DashboardIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Summary" />
+                    <ListItemText primary="Green Initiative" />
                   </ListItem>
                 </Link>
 
@@ -248,15 +320,15 @@ export default function HomePage() {
                 <Link button to="/MyCreditScore">
                   <ListItem button>
                     <ListItemIcon>
-                      <PieChartIcon />
+                      <BarChartIcon />
                     </ListItemIcon>
                     <ListItemText primary="My Credit Score" />
                   </ListItem>
                 </Link>
-                <Link button to="/Loan">
+                <Link button to="/Loan" focusbpm >
                   <ListItem button>
                     <ListItemIcon>
-                      <PieChartIcon />
+                    <AddBoxIcon />
                     </ListItemIcon>
                     <ListItemText primary="Loan" />
                   </ListItem>
@@ -265,7 +337,7 @@ export default function HomePage() {
                 <Link button to="/BillPayment">
                   <ListItem button>
                     <ListItemIcon>
-                      <PieChartIcon />
+                    <DashboardIcon />
                     </ListItemIcon>
                     <ListItemText primary="BIll Payment" />
                   </ListItem>
@@ -279,8 +351,6 @@ export default function HomePage() {
                     <ListItemText primary="Poll Questions" />
                   </ListItem>
                 </Link> */}
-
-
               </List>
               <Divider />
             </Grid>

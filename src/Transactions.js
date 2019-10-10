@@ -9,46 +9,37 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
 const columns = [
-  { id: 'Date', label: 'Date', minWidth: 170 },
-  { id: 'Transactionamt', label: 'Transaction Amount', minWidth: 100 },
-  
+  { id: 'account_ID', label: 'Account_ID', minWidth: 170 },
+  { id: 'Tran_date', label: 'Transaction Date', minWidth: 100 }, 
+  { id: 'transaction_type', label: 'Transaction Type', minWidth: 100 }, 
+  { id: 'debit', label: 'Debit', minWidth: 100 }, 
+  { id: 'credit', label: 'Credit', minWidth: 100 }, 
   {
-    id: 'contribution',
+    id: 'NGO_contribution',
     label: 'Contribution to Go Green',
     minWidth: 170,
     align: 'right',
     format: value => value.toLocaleString(),
   },
   {
-    id: 'score',
-    label: 'Credit Score',
+    id: 'actual_transaction',
+    label: 'Net Transaction',
     minWidth: 170,
     align: 'right',
     format: value => value.toFixed(2),
   },
 ];
+var rowss=new Array();
 
-function createData(Date, Transactionamt, contribution, score) {
+function createData(account_ID, Tran_date, transaction_type, debit,credit,NGO_contribution,actual_transaction) {
  
-  return { Date, Transactionamt, contribution, score };
+  return { account_ID, Tran_date, transaction_type, debit,credit,NGO_contribution,actual_transaction };
 }
 
 const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
+  createData('10001', '1/09/2019', 'sampletx1', '11','0','0.8','10.2','10089'),
+  createData('10001', '10/09/2019', 'sampletx2', '0','50','0','50','10139'),
+  createData('10001', '15/09/2019', 'Contribution towards NGO', '100','0','100','0','10039'),
 ];
 
 const useStyles = makeStyles({

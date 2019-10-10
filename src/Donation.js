@@ -43,28 +43,35 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
+
 export default function Donation() {
   const classes = useStyles();
-
-  const handleClick = () =>
-  {
-    async function makePostRequest() {
-
-      await axios.post('https://gogreenbackend.azurewebsites.net/api/v1/donate');
+ const makePostRequest = () =>{
+  //   const accountId = document.getElementById('accountID').value;
+  //  console.log(accountId) ;
+  //  const amount = document.getElementById('amount').value;
+  //  console.log(amount)
+  // let url = 'https://gogreenbackend.azurewebsites.net/api/v1/donate?accountID='+accountId+'&amount='+amount;
   
-      // console.log(`Status code: ${res.status}`);
-      // console.log(`Status text: ${res.statusText}`);
-      // console.log(`Request method: ${res.request.method}`);
-      // console.log(`Path: ${res.request.path}`);
+  // //  let res = axios.post(url);
+  //  console.log(url) ;
   
-      // console.log(`Date: ${res.headers.date}`);
-      // console.log(`Data: ${res.data}`);
-      window.location.href("/") ;
-    }
+  //  axios.post(url, { })
+  //       .then(res => {
+  //         console.log(res);
+  //         console.log(res.data);
+  //       })
+    
+   // console.log(`Status code: ${res.status}`);
+   // console.log(`Status text: ${res.statusText}`);
+   // console.log(`Request method: ${res.request.method}`);
+   // console.log(`Path: ${res.request.path}`);
   
+   // console.log(`Date: ${res.headers.date}`);
+   // console.log(`Data: ${res.data}`);
+   window.location.href("/home") ;
   }
-
-  return (
+    return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -72,7 +79,7 @@ export default function Donation() {
         <Typography component="h1" variant="h5">
             Amount to Donate
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate   >
           
            <TextField
             variant="outlined"
@@ -84,14 +91,14 @@ export default function Donation() {
             id="amount"
             autoComplete="amount"
           />         
-           <input type="hidden" value="12323" name="accountID"/>
+           <input type="hidden" value="10003" name="accountID" id="accountID"/>
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}    
-            onclick={handleClick}       
+            onClick= { makePostRequest} 
           >
             Submit
           </Button>

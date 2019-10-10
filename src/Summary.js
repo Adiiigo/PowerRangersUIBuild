@@ -76,6 +76,16 @@ export default function Summary() {
   };
 
   return (
-    <div>Summary Displayed here</div>
+    <div>
+      <h4>Green initiative </h4>
+    Millennial! Bringing a difference is a bank wide initiative 
+    that encourages customers to contribute towards greener environment 
+    each time a transaction is triggered from their account. Any decimal 
+    value transaction from a retail customer’s account is rounded off to
+     the next integer value and delta value is contributed towards green cause.
+      At the same time Institutional customers as part of this initiative can agree 
+      to contribute a percentage of every transaction towards this cause. In turn 
+      customers will be provided with reward benefits.
+      </div>
   );
 }

@@ -9,6 +9,7 @@
     "material-ui": "^0.20.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "react-font-style": "0.0.11",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0"
   },
